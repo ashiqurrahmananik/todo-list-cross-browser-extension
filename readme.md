@@ -1,6 +1,10 @@
 ### Instillation Steps
 1. Download Folder
-2. Goto chrome://extensions/
+2. Go to This Url
+``` 
+chrome://extensions/ 
+```
+
 3. On Developer Mode
 4. Click On Load Unpacked
 5. Then Select Folder
