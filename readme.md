@@ -1,3 +1,11 @@
+### Available On
+<a href="https://chrome.google.com/webstore/detail/todo-list/hhefefklghgppjhojjpecemgdnkhkola/">![chrome web store](https://user-images.githubusercontent.com/38730778/221831603-c2a757bb-4e52-47b5-bc3d-fdd90b5d3f97.png)</a>
+<br>
+<a href="https://microsoftedge.microsoft.com/addons/detail/todo-list/igcikaodlboloknbpjpgjnnojabaccfb/">![edge](https://user-images.githubusercontent.com/38730778/221831591-edbec1c5-6f03-405b-a741-d081095183c4.JPG)</a>
+<br>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/todo-list/">![firefox web store](https://user-images.githubusercontent.com/38730778/221831601-c2ba49ae-446d-4193-9dc3-cc832309f395.JPG)</a>
+
+
 ### Instillation Steps
 1. Download Folder
 2. Go to This Url
