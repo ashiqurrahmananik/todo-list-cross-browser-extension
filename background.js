@@ -1,103 +1,115 @@
-const form = document.querySelector("#itemForm");
-const itemInput = document.querySelector("#itemInput");
-const itemList = document.querySelector("#itemList");
-const messageDiv = document.querySelector("#message");
-const clearButton = document.querySelector("#clearBtn");
+const formItem = document.querySelector("#formItem");
+const inputItem = document.querySelector("#inputItem");
+const listItem = document.querySelector("#listItem");
+const message = document.querySelector("#message");
+const clearBtn = document.querySelector("#clearBtn");
 const filters = document.querySelectorAll(".nav-item");
 
-let todoItems = [];
+let todoItem = [];
 
-function handleitem(itemData) {
+const handleItem = (itemData) => {
   const items = document.querySelectorAll(".list-group-item");
+
   items.forEach((item) => {
-    console.log("aisi");
-    console.log(item.querySelector(".title").getAttribute("data-time"));
-    console.log(itemData.addat);
     if (
       item.querySelector(".title").getAttribute("data-time") == itemData.addat
     ) {
-      console.log("aisi1");
-      item.querySelector("[data-done]").addEventListener("click", function (e) {
+      item.querySelector("[data-done]").addEventListener("click", (e) => {
         e.preventDefault();
-        const itemIndex = todoItems.indexOf(itemData);
-        const currentItem = todoItems[itemIndex];
+
+        const indexItem = todoItem.indexOf(itemData);
+        const currentItem = todoItem[indexItem];
+
         currentItem.isdone = currentItem.isdone ? false : true;
-        todoItems.splice(itemIndex, 1, currentItem);
-        setlocalstorage(todoItems);
+
+        todoItem.splice(indexItem, 1, currentItem);
+
+        setLocalStorage(todoItem);
       });
-      //delete
+
+      // PERF: delete a single todo item
       item
         .querySelector("[data-delete]")
-        .addEventListener("click", function (e) {
+        .addEventListener("click", (e) => {
           e.preventDefault();
-          itemList.removeChild(item);
-          const removeIndex = todoItems.indexOf(itemData);
-          todoItems.splice(removeIndex, 1);
-          setlocalstorage(todoItems);
+
+          listItem.removeChild(item);
+
+          const removeIndex = todoItem.indexOf(itemData);
+
+          todoItem.splice(removeIndex, 1);
+
+          setLocalStorage(todoItem);
         });
     }
   });
 }
 
-function getList(todoItems) {
-  itemList.innerHTML = "";
-  console.log(todoItems.length);
+const getTodoList = (todoItems) => {
+  listItem.innerHTML = "";
+
   if (todoItems.length > 0) {
     todoItems.forEach((item) => {
       if (item.isdone == true) {
-        itemN = `<del>${item.name}</del>`;
+        item = `<del>${item.name}</del>`;
       } else {
-        itemN = `${item.name}`;
+        item = `${item.name}`;
       }
-      itemList.insertAdjacentHTML(
+
+      listItem.insertAdjacentHTML(
         "beforeend",
         `<li class="list-group-item d-flex justify-content-between align-items-center">
-            <span class="title" data-time="${item.addat}">${itemN}</span> 
+            <span class="title" data-time="${item.addat}">${item}</span> 
             <span>
                 <a href="#" data-done><i class="bi bi-check-circle green"></i></a>
                 <a href="#" data-delete><i class="bi bi-x-circle red"></i></a>
             </span>
-          </li>`
+          </li>`,
       );
-      handleitem(item);
+
+      handleItem(item);
     });
   } else {
-    console.log("nai");
+    console.log("No items found!");
   }
 }
 
-function setlocalstorage(todoItems) {
+const setLocalStorage = (todoItems) => {
   localStorage.setItem("todoItems", JSON.stringify(todoItems));
-  getlocalstorage();
+  getLocalStorage();
 }
 
-function getlocalstorage() {
+const getLocalStorage = () => {
   todostorage = localStorage.getItem("todoItems");
   if (todostorage == "undefine" || todostorage == null) {
-    todoItems = [];
+    todoItem = [];
   } else {
-    todoItems = JSON.parse(todostorage);
+    todoItem = JSON.parse(todostorage);
   }
-  console.log(todoItems);
-  getList(todoItems);
+  console.log(todoItem); // NOTE: log to the console to see our todo item being added to the browser storage for conciseness.
+  getTodoList(todoItem);
 }
+
 document.addEventListener("DOMContentLoaded", () => {
-  form.addEventListener("submit", (e) => {
+  formItem.addEventListener("submit", (e) => {
     e.preventDefault();
-    const itemname = itemInput.value.trim();
-    if (itemname.length == 0) {
+
+    const itemName = inputItem.value.trim();
+
+    if (itemName.length == 0) {
+      return
     } else {
-      const itemobj = {
-        name: itemname,
+      const itemObject = {
+        name: itemName,
         isdone: false,
         addat: new Date().getTime(),
       };
-      console.log(itemname);
-      todoItems.push(itemobj);
-      setlocalstorage(todoItems);
-      //showAlert("New item has been added.", "alert-success");
+      console.log(itemName);
+      todoItem.push(itemObject);
+      setLocalStorage(todoItem);
+      // TODO: showAlert("New item has been added.", "alert-success");
     }
-    console.log(itemname);
+    console.log(itemName);
   });
-  getlocalstorage();
+  getLocalStorage();
 });

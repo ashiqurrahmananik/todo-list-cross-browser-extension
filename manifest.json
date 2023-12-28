@@ -1,8 +1,8 @@
 {
-  "manifest_version": 3,
-  "name": "TODO List",
+  "manifest_version": 2,
+  "name": "TODO Extension",
   "version": "1.0.0",
-  "description": "A simple todo-list develop by Ashiqur Rahman Anik",
+  "description": "A simple todo-list develop by Mbhoni Baloyi",
   "action": {
     "default_popup": "popup.html",
     "default_icon": "to-do-list.png"
@@ -15,7 +15,7 @@
   },
 "browser_specific_settings": {
   "gecko": {
-    "id": "ashiqur.anik25@gmail.com"
+    "id": "mqapho@gmail.com"
            }
     }
 }
